@@ -4,5 +4,9 @@
   "main": "index.js",
   "repository": "https://github.com/yektt/indecision-app.git",
   "author": "yektt <yektaturan.93@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1"
+  }
 }
