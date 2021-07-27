@@ -42,6 +42,8 @@ const onRemoveAll = () => {
 
 const appRoot = document.getElementById('app');
 
+// const numbers = [55, 101, 1000];
+
 const render = () => {
   const template = (
     <div>
@@ -50,9 +52,27 @@ const render = () => {
       {(app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p>)}
       <p>{app.options.length}</p>
       <button onClick={onRemoveAll}>Remove all</button>
+      {
+        // JSX will not display 'undefined', 'null' or booleans (true and false)
+        // other than these, JSX will display numbers, strings, 
+        // expressions inside HTML tags and arrays...
+        // for arrays, JSX will break the elements of the array 
+        // and will display one by one
+        // for JSX elements inside of HTML tags, we should have assign a unique 'key' for each
+        // [99, 98, 97, <p key="1">1</p>, <p key="2">2</p>]
+
+        
+        //  numbers.map((number) => {
+        //  return <p key={number}> Number: {number}</p>;
+        //  })
+        
+      }
       <ol>
-        <li>Item one</li>
-        <li>Item two</li>
+        {
+          app.options.map((option) => {
+            return <li key={option}>{option}</li>
+          })
+        }
       </ol>
       <form onSubmit={onFormSubmit}>
         <input type="text" name="option"/>
