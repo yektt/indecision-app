@@ -1,117 +1,130 @@
 'use strict';
 
-// conditional statements:
-// condition ? if it's true : if it's false
-// exp: array.length = 0 ? 'hello, I am free' : 'I am busy'
-// if the array length is equal to zero, means there is no array,
-// so the phrase will be written on the screen
-// if the array length is not equal to zero, means I am busy will be the output.
+var _get = function get(object, property, receiver) { if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { return get(parent, property, receiver); } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } };
 
-// JSX - JavaScript XML (JS syntax extension)
-var app = {
-  title: 'Indecision App',
-  subtitle: 'Put your life in the hands of a computer',
-  options: []
-};
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var onFormSubmit = function onFormSubmit(e) {
-  // this will stop to refresh all page
-  e.preventDefault();
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-  // e.target will point to the element that started the event. -- e.target
-  // we can get the elements of the target -- e.target.elements
-  // we can choose a specific element with using their unique name -- e.target.elements.option
-  // we can get the value of chosen element -- e.target.elements.option.value
-  var option = e.target.elements.option.value;
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-  // re setting the input value as an empty string after adding the value that
-  // user has been entered to the object's (app)
-  if (option) {
-    app.options.push(option);
-    e.target.elements.option.value = '';
-    render();
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+// classes:  we can re-use the code with them.
+
+var Person = function () {
+  // if you want to define something as default
+  // use '=' 
+  // you can assign true, false, string, number...
+  // you can use this method in anywhere you define arguments list
+  function Person() {
+    var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'anonymous';
+    var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
+
+    _classCallCheck(this, Person);
+
+    this.name = name;
+    this.age = age;
   }
-};
 
-var onRemoveAll = function onRemoveAll() {
-  app.options = [];
-  render();
-};
+  _createClass(Person, [{
+    key: 'getGreeting',
+    value: function getGreeting() {
+      // return ('Hi ' + this.name + ' !');
+      return 'Hi, I am ' + this.name + '!';
+    }
+  }, {
+    key: 'getDescription',
+    value: function getDescription() {
+      return this.name + ' is ' + this.age + ' year(s) old';
+    }
+  }]);
 
-// it will generate a random number and will display on the screen
-// for user to do next task
-var onMakeDecision = function onMakeDecision() {
-  // Math.random always working between 0 and 1.
-  // Math.floor will round down the number
-  var randomNum = Math.floor(Math.random() * app.options.length);
-  var option = app.options[randomNum];
-  alert(option);
-};
+  return Person;
+}();
 
-// in form, we just refer the onFormSubmit
-// we did not want to call it. If we want to call it instead of refering
-// we should have use onFormSubmit() -- with bracelets
+// Student is a child of Person class
+// Student class' objects will have all Person class' attributes
+// and Student class' attributes as plus
 
-var appRoot = document.getElementById('app');
 
-// const numbers = [55, 101, 1000];
+var Student = function (_Person) {
+  _inherits(Student, _Person);
 
-var render = function render() {
-  var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-      'h1',
-      null,
-      app.title
-    ),
-    app.subtitle && React.createElement(
-      'p',
-      null,
-      app.subtitle
-    ),
-    app.options.length > 0 ? React.createElement(
-      'p',
-      null,
-      'Here are your options'
-    ) : React.createElement(
-      'p',
-      null,
-      'No options'
-    ),
-    React.createElement(
-      'button',
-      { disabled: app.options.length === 0, onClick: onMakeDecision },
-      'What should I do?'
-    ),
-    React.createElement(
-      'button',
-      { onClick: onRemoveAll },
-      'Remove all'
-    ),
-    React.createElement(
-      'ol',
-      null,
-      app.options.map(function (option) {
-        return React.createElement(
-          'li',
-          { key: option },
-          option
-        );
-      })
-    ),
-    React.createElement(
-      'form',
-      { onSubmit: onFormSubmit },
-      React.createElement('input', { type: 'text', name: 'option' }),
-      React.createElement(
-        'button',
-        null,
-        'Add Option'
-      )
-    )
-  );
-  ReactDOM.render(template, appRoot);
-};
+  // we are still adding the name and age
+  function Student(name, age, major) {
+    _classCallCheck(this, Student);
 
-render();
+    var _this = _possibleConstructorReturn(this, (Student.__proto__ || Object.getPrototypeOf(Student)).call(this, name, age));
+    // we need to call the parent class' constructor method
+    // for this, we are using 'super' keywords
+    // super refers to the parent class when we call it as a function
+
+
+    _this.major = major;
+    return _this;
+  }
+
+  _createClass(Student, [{
+    key: 'hasMajor',
+    value: function hasMajor() {
+      return !!this.major;
+    }
+
+    // overriding the getDescription method
+
+  }, {
+    key: 'getDescription',
+    value: function getDescription() {
+      // we get the parent class' getDescription method
+      var description = _get(Student.prototype.__proto__ || Object.getPrototypeOf(Student.prototype), 'getDescription', this).call(this);
+      if (this.hasMajor()) {
+        description += '. Their major is ' + this.major;
+      }
+      return description;
+    }
+  }]);
+
+  return Student;
+}(Person);
+
+var me = new Student('Yekta Turan', 28, 'Computer science');
+console.log(me.getDescription());
+
+var other = new Student();
+console.log(other.getDescription());
+
+// challenge
+
+var Traveler = function (_Person2) {
+  _inherits(Traveler, _Person2);
+
+  function Traveler(name, age, homeLocation) {
+    _classCallCheck(this, Traveler);
+
+    var _this2 = _possibleConstructorReturn(this, (Traveler.__proto__ || Object.getPrototypeOf(Traveler)).call(this, name, age));
+
+    _this2.homeLocation = homeLocation;
+    return _this2;
+  }
+
+  _createClass(Traveler, [{
+    key: 'getGreeting',
+    value: function getGreeting() {
+      var greeting = _get(Traveler.prototype.__proto__ || Object.getPrototypeOf(Traveler.prototype), 'getGreeting', this).call(this);
+
+      if (this.homeLocation) {
+        greeting += ' I am visiting from ' + this.homeLocation + '.';
+      }
+      return greeting;
+    }
+  }]);
+
+  return Traveler;
+}(Person);
+
+var traveller1 = new Traveler('Yekta', 12, 'Lausanne');
+console.log(traveller1.getGreeting());
+
+var traveller2 = new Traveler('olga');
+console.log(traveller2.getGreeting());
