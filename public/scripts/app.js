@@ -38,6 +38,16 @@ var onRemoveAll = function onRemoveAll() {
   render();
 };
 
+// it will generate a random number and will display on the screen
+// for user to do next task
+var onMakeDecision = function onMakeDecision() {
+  // Math.random always working between 0 and 1.
+  // Math.floor will round down the number
+  var randomNum = Math.floor(Math.random() * app.options.length);
+  var option = app.options[randomNum];
+  alert(option);
+};
+
 // in form, we just refer the onFormSubmit
 // we did not want to call it. If we want to call it instead of refering
 // we should have use onFormSubmit() -- with bracelets
@@ -70,9 +80,9 @@ var render = function render() {
       'No options'
     ),
     React.createElement(
-      'p',
-      null,
-      app.options.length
+      'button',
+      { disabled: app.options.length === 0, onClick: onMakeDecision },
+      'What should I do?'
     ),
     React.createElement(
       'button',

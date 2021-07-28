@@ -34,7 +34,17 @@ const onFormSubmit = (e) => {
 const onRemoveAll = () => {
   app.options = [];
   render();
-}
+};
+
+// it will generate a random number and will display on the screen
+// for user to do next task
+const onMakeDecision = () => {
+  // Math.random always working between 0 and 1.
+  // Math.floor will round down the number
+  const randomNum = Math.floor(Math.random() * app.options.length);
+  const option = app.options[randomNum];
+  alert(option);
+};
 
 // in form, we just refer the onFormSubmit
 // we did not want to call it. If we want to call it instead of refering
@@ -50,7 +60,7 @@ const render = () => {
       <h1>{app.title}</h1>
       {(app.subtitle && <p>{app.subtitle}</p>)}
       {(app.options.length > 0 ? <p>Here are your options</p> : <p>No options</p>)}
-      <p>{app.options.length}</p>
+      <button disabled={app.options.length === 0} onClick={onMakeDecision}>What should I do?</button>
       <button onClick={onRemoveAll}>Remove all</button>
       {
         // JSX will not display 'undefined', 'null' or booleans (true and false)
