@@ -176,6 +176,10 @@ var AddOption = function (_React$Component6) {
 
   _createClass(AddOption, [{
     key: 'handleAddOption',
+
+    // class method
+    // something that is contained inside of the class
+    // other classes do not this method to run
     value: function handleAddOption(e) {
       e.preventDefault();
 

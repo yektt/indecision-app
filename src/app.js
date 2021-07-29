@@ -71,9 +71,12 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  // class method
+  // something that is contained inside of the class
+  // other classes do not this method to run
   handleAddOption(e) {
     e.preventDefault();
-    
+
     const option = e.target.elements.option.value;
 
     if(option)
