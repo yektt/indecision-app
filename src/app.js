@@ -1,3 +1,15 @@
+const obj = {
+  name: 'Vikram',
+  getName() {
+    return this.name;
+  }
+};
+// you can write the object name or directly whatever you want to use 
+// inside of the bind function as like .bind( {name: 'Yekta'} )
+const getName = obj.getName.bind(obj);
+
+console.log(getName());
+
 // creating React component
 class IndecisionApp extends React.Component {
   render() {
@@ -43,8 +55,17 @@ class Action extends React.Component {
 }
 
 class Options extends React.Component {
+  // for efficiency, we set up the binding in constructor method instead of 
+  // setting it up in the render 
+  constructor(props) {
+    super(props);
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
+  
   handleRemoveAll() {
-    alert('removed');
+    //alert('removed');
+    // we cannot use 'this' because we are losing the binding.
+    console.log(this.props.options);
   }
 
   render() {

@@ -8,7 +8,20 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+var obj = {
+  name: 'Vikram',
+  getName: function getName() {
+    return this.name;
+  }
+};
+// you can write the object name or directly whatever you want to use 
+// inside of the bind function as like .bind( {name: 'Yekta'} )
+var getName = obj.getName.bind(obj);
+
+console.log(getName());
+
 // creating React component
+
 var IndecisionApp = function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
 
@@ -108,16 +121,23 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
-  function Options() {
+  // for efficiency, we set up the binding in constructor method instead of 
+  // setting it up in the render 
+  function Options(props) {
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+    _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
+    return _this4;
   }
 
   _createClass(Options, [{
     key: 'handleRemoveAll',
     value: function handleRemoveAll() {
-      alert('removed');
+      //alert('removed');
+      // we cannot use 'this' because we are losing the binding.
+      console.log(this.props.options);
     }
   }, {
     key: 'render',
