@@ -27,9 +27,10 @@ class IndecisionApp extends React.Component {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
     this.handlePick = this.handlePick.bind(this);
+    this.handleAddOption = this.handleAddOption.bind(this);
 
     this.state = {
-      options : ['thing one', 'thing two']
+      options : []
     };
   }
 
@@ -47,6 +48,21 @@ class IndecisionApp extends React.Component {
     alert(option);
   }
 
+  handleAddOption(option) {
+    if (!option) {
+      return 'Enter valid value to add item';
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    }
+
+    this.setState((prevState) => {
+      return {
+        // with concat you can merge two arrays together
+        options: prevState.options.concat(option)
+      };
+    });
+  }
+
   render() {
     const title = 'Indecision';
     const subtitle = 'Put your life in the hands of computer';
@@ -62,7 +78,9 @@ class IndecisionApp extends React.Component {
           options={this.state.options} 
           handleDeleteOptions = {this.handleDeleteOptions}
         />
-        <AddOption />
+        <AddOption 
+          handleAddOption = {this.handleAddOption}
+        />
       </div>
     );
   }
@@ -125,20 +143,38 @@ class Option extends React.Component {
 }
 
 class AddOption extends React.Component {
+  // for sending data from child to parent
+  // you should add constructor method and bind the method again
+  constructor(props) {
+    super(props);
+    this.handleAddOption = this.handleAddOption.bind(this);
+    
+    this.state = {
+      error: undefined
+    };
+  }
   // class method
   // something that is contained inside of the class
   // other classes do not this method to run
   handleAddOption(e) {
     e.preventDefault();
 
-    const option = e.target.elements.option.value;
+    const option = e.target.elements.option.value.trim();
+    const error = this.props.handleAddOption(option);
 
-    if(option)
-      alert(option);
+    if(error)
+      console.log(error)
+
+    this.setState(() => {
+      return {
+        error
+      };
+    });
   }
   render() {
     return (
       <div>
+        { this.state.error && <p>{this.state.error} </p> }
         <form onSubmit={this.handleAddOption}>
           <input type="text" name="option"/>
           <button>Add Option</button>
