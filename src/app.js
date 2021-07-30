@@ -1,3 +1,14 @@
+// component state: manipulating the data and 
+// component is going to take care the rest itself
+// we do not need to write and call a function again and again 
+// to reflect after each changes in tha data
+
+// we need to set a default state object
+// change the default state based on event - updating
+// you can think like it will be new default
+// component re-rendered using the new state values
+// start again from change data step (updating)
+
 const obj = {
   name: 'Vikram',
   getName() {
