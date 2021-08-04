@@ -30,7 +30,12 @@ class IndecisionApp extends React.Component {
     this.handleAddOption = this.handleAddOption.bind(this);
 
     this.state = {
-      options : []
+      // after writing the defaultProps for IndecisionApp
+      // we need to change inside of state
+      // from
+      // options : []
+      // to
+      options: props.options
     };
   }
 
@@ -64,12 +69,19 @@ class IndecisionApp extends React.Component {
   }
 
   render() {
-    const title = 'Indecision';
+    // you can remove the attribute from here when you 
+    // declare it as default with defaultProps
+    // const title = 'Indecision';
     const subtitle = 'Put your life in the hands of computer';
 
     return ( 
       <div>
+        {/* if you want to use default title,
+        you do not need to pass title attribute in here
+        so, this line
         <Header title={title} subtitle={subtitle} />
+        will be like this: */}
+        <Header subtitle={subtitle} />
         <Action 
           hasOptions={this.state.options.length > 0} 
           handlePick={this.handlePick}
@@ -86,6 +98,10 @@ class IndecisionApp extends React.Component {
   }
 }
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 // class Header extends React.Component{
 //   // React.Component requires one method define : 'render'
 //   render() {
@@ -99,13 +115,21 @@ class IndecisionApp extends React.Component {
 // }
 
 // converting Header class to the stateless function component
+
+// setting up a default value for props values (class based or function based components)
 const Header = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      {props.subtitle && <h2>{props.subtitle}</h2> }
     </div>
   );
+};
+
+// this is an object
+// it can be override in other components
+Header.defaultProps = {
+  title: 'Indesicion'
 };
 
 // class Action extends React.Component {

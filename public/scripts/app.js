@@ -45,7 +45,12 @@ var IndecisionApp = function (_React$Component) {
     _this.handleAddOption = _this.handleAddOption.bind(_this);
 
     _this.state = {
-      options: []
+      // after writing the defaultProps for IndecisionApp
+      // we need to change inside of state
+      // from
+      // options : []
+      // to
+      options: props.options
     };
     return _this;
   }
@@ -85,13 +90,15 @@ var IndecisionApp = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var title = 'Indecision';
+      // you can remove the attribute from here when you 
+      // declare it as default with defaultProps
+      // const title = 'Indecision';
       var subtitle = 'Put your life in the hands of computer';
 
       return React.createElement(
         'div',
         null,
-        React.createElement(Header, { title: title, subtitle: subtitle }),
+        React.createElement(Header, { subtitle: subtitle }),
         React.createElement(Action, {
           hasOptions: this.state.options.length > 0,
           handlePick: this.handlePick
@@ -110,6 +117,10 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
+IndecisionApp.defaultProps = {
+  options: []
+};
+
 // class Header extends React.Component{
 //   // React.Component requires one method define : 'render'
 //   render() {
@@ -124,7 +135,7 @@ var IndecisionApp = function (_React$Component) {
 
 // converting Header class to the stateless function component
 
-
+// setting up a default value for props values (class based or function based components)
 var Header = function Header(props) {
   return React.createElement(
     'div',
@@ -134,12 +145,18 @@ var Header = function Header(props) {
       null,
       props.title
     ),
-    React.createElement(
+    props.subtitle && React.createElement(
       'h2',
       null,
       props.subtitle
     )
   );
+};
+
+// this is an object
+// it can be override in other components
+Header.defaultProps = {
+  title: 'Indesicion'
 };
 
 // class Action extends React.Component {
