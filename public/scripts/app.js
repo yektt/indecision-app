@@ -110,146 +110,145 @@ var IndecisionApp = function (_React$Component) {
   return IndecisionApp;
 }(React.Component);
 
-var Header = function (_React$Component2) {
-  _inherits(Header, _React$Component2);
+// class Header extends React.Component{
+//   // React.Component requires one method define : 'render'
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.props.title}</h1>
+//         <h2>{this.props.subtitle}</h2>
+//       </div>
+//     );
+//   }
+// }
 
-  function Header() {
-    _classCallCheck(this, Header);
-
-    return _possibleConstructorReturn(this, (Header.__proto__ || Object.getPrototypeOf(Header)).apply(this, arguments));
-  }
-
-  _createClass(Header, [{
-    key: 'render',
-
-    // React.Component requires one method define : 'render'
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'h1',
-          null,
-          this.props.title
-        ),
-        React.createElement(
-          'h2',
-          null,
-          this.props.subtitle
-        )
-      );
-    }
-  }]);
-
-  return Header;
-}(React.Component);
-
-var Action = function (_React$Component3) {
-  _inherits(Action, _React$Component3);
-
-  function Action() {
-    _classCallCheck(this, Action);
-
-    return _possibleConstructorReturn(this, (Action.__proto__ || Object.getPrototypeOf(Action)).apply(this, arguments));
-  }
-
-  _createClass(Action, [{
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'button',
-          {
-            onClick: this.props.handlePick,
-            disabled: !this.props.hasOptions
-          },
-          'What should I do?'
-        )
-      );
-    }
-  }]);
-
-  return Action;
-}(React.Component);
-
-var Options = function (_React$Component4) {
-  _inherits(Options, _React$Component4);
-
-  function Options() {
-    _classCallCheck(this, Options);
-
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
-  }
-
-  _createClass(Options, [{
-    key: 'render',
-
-    // for efficiency, we set up the binding in constructor method instead of 
-    // setting it up in the render 
+// converting Header class to the stateless function component
 
 
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        React.createElement(
-          'button',
-          { onClick: this.props.handleDeleteOptions },
-          'Remove all'
-        ),
+var Header = function Header(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'h1',
+      null,
+      props.title
+    ),
+    React.createElement(
+      'h2',
+      null,
+      props.subtitle
+    )
+  );
+};
 
-        // key is a special reserved name, it won't be available in Option component
-        this.props.options.map(function (option) {
-          return React.createElement(Option, { key: option, optionText: option });
-        })
-      );
-    }
-  }]);
+// class Action extends React.Component {
 
-  return Options;
-}(React.Component);
+//   render() {
+//     return (
+//       <div>
+//         <button 
+//           onClick={this.props.handlePick}
+//           disabled={!this.props.hasOptions}
+//         >
+//           What should I do?
+//         </button>
+//       </div>
+//     );
+//   }
+// }
+// how we can convert Action class to the Action stateless function component:
 
-var Option = function (_React$Component5) {
-  _inherits(Option, _React$Component5);
+// we do not have access to the 'this'
+// when you convert your class component to stateless,
+// do not forget to check 'this' and remove them
+// do not forget to pass down 'props' on the stateless function
+var Action = function Action(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'button',
+      {
+        onClick: props.handlePick,
+        disabled: !props.hasOptions
+      },
+      'What should I do?'
+    )
+  );
+};
 
-  function Option() {
-    _classCallCheck(this, Option);
+// class Options extends React.Component {
+//   // for efficiency, we set up the binding in constructor method instead of 
+//   // setting it up in the render 
 
-    return _possibleConstructorReturn(this, (Option.__proto__ || Object.getPrototypeOf(Option)).apply(this, arguments));
-  }
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.props.handleDeleteOptions}>Remove all</button>
+//         {
+//           // key is a special reserved name, it won't be available in Option component
+//           this.props.options.map((option) => <Option key={option} optionText={option}/>)
+//         }
+//       </div>
+//     );
+//   }
+// } 
 
-  _createClass(Option, [{
-    key: 'render',
-    value: function render() {
-      return React.createElement(
-        'div',
-        null,
-        this.props.optionText
-      );
-    }
-  }]);
+// converting the Options class to the stateless function component
 
-  return Option;
-}(React.Component);
+var Options = function Options(props) {
+  return React.createElement(
+    'div',
+    null,
+    React.createElement(
+      'button',
+      { onClick: props.handleDeleteOptions },
+      'Remove all'
+    ),
 
-var AddOption = function (_React$Component6) {
-  _inherits(AddOption, _React$Component6);
+    // key is a special reserved name, it won't be available in Option component
+    props.options.map(function (option) {
+      return React.createElement(Option, { key: option, optionText: option });
+    })
+  );
+};
+
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         {this.props.optionText}
+//       </div>
+//     );
+//   }
+// }
+
+// converting Option class to the stateless function component
+var Option = function Option(props) {
+  return React.createElement(
+    'div',
+    null,
+    props.optionText
+  );
+};
+
+var AddOption = function (_React$Component2) {
+  _inherits(AddOption, _React$Component2);
 
   // for sending data from child to parent
   // you should add constructor method and bind the method again
   function AddOption(props) {
     _classCallCheck(this, AddOption);
 
-    var _this6 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
+    var _this2 = _possibleConstructorReturn(this, (AddOption.__proto__ || Object.getPrototypeOf(AddOption)).call(this, props));
 
-    _this6.handleAddOption = _this6.handleAddOption.bind(_this6);
+    _this2.handleAddOption = _this2.handleAddOption.bind(_this2);
 
-    _this6.state = {
+    _this2.state = {
       error: undefined
     };
-    return _this6;
+    return _this2;
   }
   // class method
   // something that is contained inside of the class
@@ -300,5 +299,22 @@ var AddOption = function (_React$Component6) {
 
   return AddOption;
 }(React.Component);
+
+// stateless functional component - presentational components
+// they are allowing us to use props
+// stateless functional components are faster than class based components
+// render() function is not needed in stateless functional components
+// do not forget to add 'props' to the function
+// you can create like this: const User = function() {}
+// or
+
+// const User = (props) => {
+//   return(
+//     <div>
+//       <p>Name: {props.name} </p>
+//       <p>Age: {props.age}</p>
+//     </div>
+//   );
+// };
 
 ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));

@@ -86,61 +86,113 @@ class IndecisionApp extends React.Component {
   }
 }
 
-class Header extends React.Component{
-  // React.Component requires one method define : 'render'
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
-      </div>
-    );
-  }
-}
+// class Header extends React.Component{
+//   // React.Component requires one method define : 'render'
+//   render() {
+//     return (
+//       <div>
+//         <h1>{this.props.title}</h1>
+//         <h2>{this.props.subtitle}</h2>
+//       </div>
+//     );
+//   }
+// }
 
-class Action extends React.Component {
+// converting Header class to the stateless function component
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <h2>{props.subtitle}</h2>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <button 
-          onClick={this.props.handlePick}
-          disabled={!this.props.hasOptions}
-        >
-          What should I do?
-        </button>
-      </div>
-    );
-  }
-}
+// class Action extends React.Component {
 
-class Options extends React.Component {
-  // for efficiency, we set up the binding in constructor method instead of 
-  // setting it up in the render 
+//   render() {
+//     return (
+//       <div>
+//         <button 
+//           onClick={this.props.handlePick}
+//           disabled={!this.props.hasOptions}
+//         >
+//           What should I do?
+//         </button>
+//       </div>
+//     );
+//   }
+// }
+// how we can convert Action class to the Action stateless function component:
+
+// we do not have access to the 'this'
+// when you convert your class component to stateless,
+// do not forget to check 'this' and remove them
+// do not forget to pass down 'props' on the stateless function
+const Action = (props) => {
+  return(
+    <div>
+      <button 
+        onClick={props.handlePick}
+        disabled={!props.hasOptions}
+      >
+        What should I do?
+      </button>
+    </div>
+  );
+};
+
+
+
+// class Options extends React.Component {
+//   // for efficiency, we set up the binding in constructor method instead of 
+//   // setting it up in the render 
   
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.props.handleDeleteOptions}>Remove all</button>
+//         {
+//           // key is a special reserved name, it won't be available in Option component
+//           this.props.options.map((option) => <Option key={option} optionText={option}/>)
+//         }
+//       </div>
+//     );
+//   }
+// } 
 
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.handleDeleteOptions}>Remove all</button>
-        {
-          // key is a special reserved name, it won't be available in Option component
-          this.props.options.map((option) => <Option key={option} optionText={option}/>)
-        }
-      </div>
-    );
-  }
-}
+// converting the Options class to the stateless function component
 
-class Option extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.optionText}
-      </div>
-    );
-  }
-}
+const Options = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleDeleteOptions}>Remove all</button>
+      {
+        // key is a special reserved name, it won't be available in Option component
+        props.options.map((option) => <Option key={option} optionText={option}/>)
+      }
+    </div>
+  );
+};
+
+// class Option extends React.Component {
+//   render() {
+//     return (
+//       <div>
+//         {this.props.optionText}
+//       </div>
+//     );
+//   }
+// }
+
+// converting Option class to the stateless function component
+const Option = (props) => {
+  return (
+    <div>
+      {props.optionText}
+    </div>
+  );
+};
 
 class AddOption extends React.Component {
   // for sending data from child to parent
@@ -183,5 +235,23 @@ class AddOption extends React.Component {
     );
   }
 }
+
+
+// stateless functional component - presentational components
+// they are allowing us to use props
+// stateless functional components are faster than class based components
+// render() function is not needed in stateless functional components
+// do not forget to add 'props' to the function
+// you can create like this: const User = function() {}
+// or
+
+// const User = (props) => {
+//   return(
+//     <div>
+//       <p>Name: {props.name} </p>
+//       <p>Age: {props.age}</p>
+//     </div>
+//   );
+// };
 
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
