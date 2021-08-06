@@ -36,15 +36,27 @@ class IndecisionApp extends React.Component {
       // from
       // options : []
       // to
-      options: props.options
+      options: []
     };
   }
 
   componentDidMount() {
-    console.log('fetching data');
+    try {
+      const json = localStorage.getItem('options');
+      const options = JSON.parse(json);
+
+      if (options) {
+        this.setState(() => ({ options }));
+      }
+    } catch (e) {
+      // Do nothing
+    }
   }
-  componentDidUpdate() {
-    console.log('saving data');
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.options.length !== this.state.options.length) {
+      const json = JSON.stringify(this.state.options);
+      localStorage.setItem('options', json);
+    }
   }
   componentWillUnmount() {
     console.log('component will unmount');
@@ -128,10 +140,6 @@ class IndecisionApp extends React.Component {
     );
   }
 }
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 // class Header extends React.Component{
 //   // React.Component requires one method define : 'render'
@@ -222,6 +230,7 @@ const Options = (props) => {
   return (
     <div>
       <button onClick={props.handleDeleteOptions}>Remove all</button>
+      {props.options.length === 0 && <p>Please add an option to get started!</p>}
       {
         // key is a special reserved name, it won't be available in Option component
         props.options.map((option) => (
@@ -291,6 +300,11 @@ class AddOption extends React.Component {
     // });
 
     this.setState(() => ({ error }));
+
+    // for clearing input:
+    if (!error) {
+      e.target.elements.option.value = "";
+    }
   }
   render() {
     return (

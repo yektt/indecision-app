@@ -9,8 +9,29 @@ class Counter extends React.Component {
     // setting up the default 
     // add the attributes that you are gonna change
     this.state = {
-      count: props.count
+      count: 0
     };
+  }
+
+  componentDidMount() {
+    try {
+      const json = localStorage.getItem('count');
+      const count = JSON.parse(json);
+
+      if (!isNaN(count)) {
+        this.setState(() => ({ count }));
+      }
+    } catch (e) {
+      // Do nothing
+    }
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if(prevState.count !== this.state.count) {
+      localStorage.setItem('count', this.state.count);
+    }
+  }
+  componentWillUnmount() {
+    console.log('component will unmount');
   }
 
   handleAddOne() {
@@ -49,10 +70,6 @@ class Counter extends React.Component {
     );
   }
 }
-
-Counter.defaultProps = {
-  count: 0
-};
 
 ReactDOM.render(<Counter />, document.getElementById('app'));
 
