@@ -82,10 +82,12 @@ console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2,3))
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](5,3));
 
-console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* isAdult */](15));
-console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* isAdult */](23));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["c" /* isAdult */](15));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["c" /* isAdult */](23));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](12));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](41));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* default */](41));
+console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* default */](65));
 
 /***/ }),
 /* 1 */
@@ -132,10 +134,13 @@ const subtract = (a, b) => a - b;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isAdult; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return isAdult; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return canDrink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return isSenior; });
 const isAdult = (x) => x >= 18 ? true : false
 const canDrink = (x) => x >= 21 ? true : false
+const isSenior = (x) => x >=65 ? true : false
+
 
 
 
