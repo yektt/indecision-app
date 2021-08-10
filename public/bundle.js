@@ -73,11 +73,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__person_js__ = __webpack_require__(2);
 // inside of the curly bracelets, you can import the function
 
+// you need to use the default method out of curly bracelets
+
 
 
 console.log('hello');
-console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* square */](4));
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["c" /* square */](4));
 console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["a" /* add */](2,3))
+console.log(__WEBPACK_IMPORTED_MODULE_0__utils_js__["b" /* default */](5,3));
 
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* isAdult */](15));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* isAdult */](23));
@@ -89,18 +92,40 @@ console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](41));
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return square; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return square; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return add; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return subtract; });
 console.log('in utils.js');
 
+// we can write like this as well:
+// export const square = (x) => x*x;
+// like this, we do not need to export it again at the bottom
+// if we want to declare the method as default
+// we need to write like this:
+// declare the subtract above the declaration of 'export default'
+// then use
+// export default subtract;
+// expression to export it.
 const square = (x) => x * x ;
 
 const add = (a,b) => a + b ;
 
+const subtract = (a, b) => a - b;
+
 // this is not an object definition
 // we need to put the references that we want to export
 
+// if you want to describe an export const as a default one.
+// you need to write 'as default' after the name of it
+// you can do this to only one 
 
+
+
+// what makes the default special!:
+// you can call the default method with another name 
+// (naming is not important for default methods)
+// if there is one big method that has been using a lot
+// assign that as default
 
 /***/ }),
 /* 2 */
