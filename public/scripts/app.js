@@ -22,5 +22,8 @@ console.log((0, _person.isAdult)(15));
 console.log((0, _person.isAdult)(23));
 console.log((0, _person.canDrink)(12));
 console.log((0, _person.canDrink)(41));
+
+// you can change the naming of default imported methods.
+// it is 'isSenior' in the person.js
 console.log((0, _person2.default)(41));
 console.log((0, _person2.default)(65));

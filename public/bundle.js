@@ -86,6 +86,9 @@ console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["c" /* isAdult */](15));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["c" /* isAdult */](23));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](12));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["a" /* canDrink */](41));
+
+// you can change the naming of default imported methods.
+// it is 'isSenior' in the person.js
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* default */](41));
 console.log(__WEBPACK_IMPORTED_MODULE_1__person_js__["b" /* default */](65));
 
