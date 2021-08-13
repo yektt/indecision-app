@@ -1031,9 +1031,9 @@ var _AddOption = __webpack_require__(35);
 
 var _AddOption2 = _interopRequireDefault(_AddOption);
 
-var _Option = __webpack_require__(36);
+var _Options = __webpack_require__(39);
 
-var _Option2 = _interopRequireDefault(_Option);
+var _Options2 = _interopRequireDefault(_Options);
 
 var _Header = __webpack_require__(37);
 
@@ -1206,7 +1206,7 @@ var IndecisionApp = function (_React$Component) {
           hasOptions: this.state.options.length > 0,
           handlePick: this.handlePick
         }),
-        _react2.default.createElement(Options, {
+        _react2.default.createElement(_Options2.default, {
           options: this.state.options,
           handleDeleteOptions: this.handleDeleteOptions,
           handleDeleteOption: this.handleDeleteOption
@@ -1220,51 +1220,6 @@ var IndecisionApp = function (_React$Component) {
 
   return IndecisionApp;
 }(_react2.default.Component);
-
-// class Options extends React.Component {
-//   // for efficiency, we set up the binding in constructor method instead of 
-//   // setting it up in the render 
-
-//   render() {
-//     return (
-//       <div>
-//         <button onClick={this.props.handleDeleteOptions}>Remove all</button>
-//         {
-//           // key is a special reserved name, it won't be available in Option component
-//           this.props.options.map((option) => <Option key={option} optionText={option}/>)
-//         }
-//       </div>
-//     );
-//   }
-// } 
-
-// converting the Options class to the stateless function component
-
-var Options = function Options(props) {
-  return _react2.default.createElement(
-    "div",
-    null,
-    _react2.default.createElement(
-      "button",
-      { onClick: props.handleDeleteOptions },
-      "Remove all"
-    ),
-    props.options.length === 0 && _react2.default.createElement(
-      "p",
-      null,
-      "Please add an option to get started!"
-    ),
-
-    // key is a special reserved name, it won't be available in Option component
-    props.options.map(function (option) {
-      return _react2.default.createElement(_Option2.default, {
-        key: option,
-        optionText: option,
-        handleDeleteOption: props.handleDeleteOption
-      });
-    })
-  );
-};
 
 // stateless functional component - presentational components
 // they are allowing us to use props
@@ -22027,6 +21982,74 @@ var Action = function Action(props) {
 };
 
 exports.default = Action;
+
+/***/ }),
+/* 39 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _Option = __webpack_require__(36);
+
+var _Option2 = _interopRequireDefault(_Option);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+// class Options extends React.Component {
+//   // for efficiency, we set up the binding in constructor method instead of 
+//   // setting it up in the render 
+
+//   render() {
+//     return (
+//       <div>
+//         <button onClick={this.props.handleDeleteOptions}>Remove all</button>
+//         {
+//           // key is a special reserved name, it won't be available in Option component
+//           this.props.options.map((option) => <Option key={option} optionText={option}/>)
+//         }
+//       </div>
+//     );
+//   }
+// } 
+
+// converting the Options class to the stateless function component
+
+var Options = function Options(props) {
+  return _react2.default.createElement(
+    "div",
+    null,
+    _react2.default.createElement(
+      "button",
+      { onClick: props.handleDeleteOptions },
+      "Remove all"
+    ),
+    props.options.length === 0 && _react2.default.createElement(
+      "p",
+      null,
+      "Please add an option to get started!"
+    ),
+
+    // key is a special reserved name, it won't be available in Option component
+    props.options.map(function (option) {
+      return _react2.default.createElement(_Option2.default, {
+        key: option,
+        optionText: option,
+        handleDeleteOption: props.handleDeleteOption
+      });
+    })
+  );
+};
+
+exports.default = Options;
 
 /***/ })
 /******/ ]);

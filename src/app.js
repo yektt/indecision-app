@@ -3,7 +3,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import AddOption from "./components/AddOption";
-import Option from "./components/Option";
+import Options from "./components/Options";
 import Header from "./components/Header";
 import Action from "./components/Action";
 
@@ -153,46 +153,6 @@ class IndecisionApp extends React.Component {
 
 
 
-
-
-
-// class Options extends React.Component {
-//   // for efficiency, we set up the binding in constructor method instead of 
-//   // setting it up in the render 
-  
-//   render() {
-//     return (
-//       <div>
-//         <button onClick={this.props.handleDeleteOptions}>Remove all</button>
-//         {
-//           // key is a special reserved name, it won't be available in Option component
-//           this.props.options.map((option) => <Option key={option} optionText={option}/>)
-//         }
-//       </div>
-//     );
-//   }
-// } 
-
-// converting the Options class to the stateless function component
-
-const Options = (props) => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOptions}>Remove all</button>
-      {props.options.length === 0 && <p>Please add an option to get started!</p>}
-      {
-        // key is a special reserved name, it won't be available in Option component
-        props.options.map((option) => (
-          < Option 
-            key={option} 
-            optionText={option} 
-            handleDeleteOption={props.handleDeleteOption}
-          />
-        ))
-      }
-    </div>
-  );
-};
 
 
 
