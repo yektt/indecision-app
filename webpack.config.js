@@ -1,6 +1,5 @@
 // entry --> output
 
-
 const path = require('path');
 
 // it is a way to expose something to another file
@@ -18,5 +17,8 @@ module.exports = {
       exclude: /node_modules/
     }]
   },
-  devtool: 'cheap-module-eval-source-map'
+  devtool: 'cheap-module-eval-source-map',
+  devServer: {
+    contentBase: path.join(__dirname, 'public')
+  }
 };
