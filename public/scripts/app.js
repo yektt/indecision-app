@@ -8,20 +8,11 @@ var _reactDom = require("react-dom");
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
-var _AddOption = require("./components/AddOption");
+var _IndesicionApp = require("./components/IndesicionApp");
 
-var _AddOption2 = _interopRequireDefault(_AddOption);
-
-var _Options = require("./components/Options");
-
-var _Options2 = _interopRequireDefault(_Options);
-
-var _Header = require("./components/Header");
-
-var _Header2 = _interopRequireDefault(_Header);
-
-var _Action = require("./components/Action");
-
-var _Action2 = _interopRequireDefault(_Action);
+var _IndesicionApp2 = _interopRequireDefault(_IndesicionApp);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+_reactDom2.default.render(_react2.default.createElement(_IndesicionApp2.default, null), document.getElementById('app')); // // for string validations
+// import validator from "validator";

@@ -1,3 +1,8 @@
+import React from "react";
+import AddOption from "./AddOption";
+import Options from "./Options";
+import Header from "./Header";
+import Action from "./Action";
 
 // component state: manipulating the data and 
 // component is going to take care the rest itself
@@ -23,7 +28,7 @@
 // console.log(getName());
 
 // creating React component
-class IndecisionApp extends React.Component {
+export default class IndecisionApp extends React.Component {
   constructor(props) {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
@@ -143,13 +148,6 @@ class IndecisionApp extends React.Component {
 }
 
 
-
-
-
-
-
-
-
 // stateless functional component - presentational components
 // they are allowing us to use props
 // stateless functional components are faster than class based components
@@ -166,8 +164,6 @@ class IndecisionApp extends React.Component {
 //     </div>
 //   );
 // };
-
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 
 
 // ***** Import examples
