@@ -9,17 +9,27 @@ ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 class OldSyntax {
   constructor() {
     this.name = 'Mike';
+    this.getGreeting = this.getGreeting.bind(this);
+  }
+  getGreeting() {
+    return `hi, my name is ${this.name}`;
   }
 }
 
 const oldSyntax = new OldSyntax();
-console.log(oldSyntax);
+const greet = oldSyntax.getGreeting;
+console.log(greet());
 
 // -------
 
 class NewSyntax {
   name = 'Jen';
+
+  getGreeting = () => {
+    return `hi, my name is ${this.name}`;
+  }
 }
 
 const newSyntax = new NewSyntax();
-console.log(newSyntax);
+const greet2 = newSyntax.getGreeting;
+console.log(greet2());

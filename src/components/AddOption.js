@@ -8,14 +8,10 @@ export default class AddOption extends React.Component {
     error: undefined
   }
 
-  constructor(props) {
-    super(props);
-    this.handleAddOption = this.handleAddOption.bind(this);
-  }
   // class method
   // something that is contained inside of the class
   // other classes do not this method to run
-  handleAddOption(e) {
+  handleAddOption = (e) => {
     e.preventDefault();
 
     const option = e.target.elements.option.value.trim();

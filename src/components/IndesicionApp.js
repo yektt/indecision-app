@@ -29,6 +29,63 @@ import Action from "./Action";
 
 // creating React component
 export default class IndecisionApp extends React.Component {
+  state = {
+    // after writing the defaultProps for IndecisionApp
+    // we need to change inside of state
+    // from
+    // options : []
+    // to
+    options: []
+  }
+
+  handleDeleteOptions = () => {
+    // this.setState(() => {
+    //   return {
+    //     options: []
+    //   }
+    // })
+
+    // instead of above, we can write it like this:
+    // if the function will return an object,
+    // envelope the function return with ()
+    // like this:  () => ({ return value here })  
+
+    this.setState(() => ({ options: [] }));
+  }
+
+  handleDeleteOption = (optionToRemove) => {
+    this.setState((prevState) => ({
+      options: prevState.options.filter((option) => optionToRemove !== option)
+    }));
+  }
+
+  handlePick = () => {
+    const randomNum = Math.floor(Math.random() * this.state.options.length);
+    const option = this.state.options[randomNum];
+    alert(option);
+  }
+
+  handleAddOption = (option) => {
+    if (!option) {
+      return 'Enter valid value to add item';
+    } else if (this.state.options.indexOf(option) > -1) {
+      return 'This option already exists';
+    }
+
+    // this.setState((prevState) => {
+    //   return {
+    //     // with concat you can merge two arrays together
+    //     options: prevState.options.concat(option)
+    //   };
+    // });
+
+    // conversion of the this.setState: 
+    // no need to use 'return' part
+    // because we are not doing something, we are just creating the object
+
+    this.setState((prevState) => ({ options: prevState.options.concat(option)}));
+  }
+
   constructor(props) {
     super(props);
     this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
@@ -36,14 +93,7 @@ export default class IndecisionApp extends React.Component {
     this.handleAddOption = this.handleAddOption.bind(this);
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
 
-    this.state = {
-      // after writing the defaultProps for IndecisionApp
-      // we need to change inside of state
-      // from
-      // options : []
-      // to
-      options: []
-    };
+    
   }
 
   componentDidMount() {
@@ -66,54 +116,6 @@ export default class IndecisionApp extends React.Component {
   }
   componentWillUnmount() {
     console.log('component will unmount');
-  }
-
-  handleDeleteOptions() {
-    // this.setState(() => {
-    //   return {
-    //     options: []
-    //   }
-    // })
-
-    // instead of above, we can write it like this:
-    // if the function will return an object,
-    // envelope the function return with ()
-    // like this:  () => ({ return value here })  
-
-    this.setState(() => ({ options: [] }));
-  }
-
-  handleDeleteOption(optionToRemove) {
-    this.setState((prevState) => ({
-      options: prevState.options.filter((option) => optionToRemove !== option)
-    }));
-  }
-
-  handlePick() {
-    const randomNum = Math.floor(Math.random() * this.state.options.length);
-    const option = this.state.options[randomNum];
-    alert(option);
-  }
-
-  handleAddOption(option) {
-    if (!option) {
-      return 'Enter valid value to add item';
-    } else if (this.state.options.indexOf(option) > -1) {
-      return 'This option already exists';
-    }
-
-    // this.setState((prevState) => {
-    //   return {
-    //     // with concat you can merge two arrays together
-    //     options: prevState.options.concat(option)
-    //   };
-    // });
-
-    // conversion of the this.setState: 
-    // no need to use 'return' part
-    // because we are not doing something, we are just creating the object
-
-    this.setState((prevState) => ({ options: prevState.options.concat(option)}));
   }
 
   render() {
