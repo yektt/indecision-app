@@ -4,13 +4,13 @@ import React from "react";
 export default class AddOption extends React.Component {
   // for sending data from child to parent
   // you should add constructor method and bind the method again
+  state = {
+    error: undefined
+  }
+
   constructor(props) {
     super(props);
     this.handleAddOption = this.handleAddOption.bind(this);
-    
-    this.state = {
-      error: undefined
-    };
   }
   // class method
   // something that is contained inside of the class
