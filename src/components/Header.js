@@ -15,14 +15,12 @@ import React from "react";
 // converting Header class to the stateless function component
 
 // setting up a default value for props values (class based or function based components)
-const Header = (props) => {
-  return (
-    <div>
-      <h1>{props.title}</h1>
-      {props.subtitle && <h2>{props.subtitle}</h2> }
-    </div>
-  );
-};
+const Header = (props) => (
+  <div>
+    <h1>{props.title}</h1>
+    {props.subtitle && <h2>{props.subtitle}</h2> }
+  </div>
+);
 
 // this is an object
 // it can be override in other components

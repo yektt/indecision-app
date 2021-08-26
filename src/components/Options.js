@@ -19,25 +19,21 @@ import Option from "./Option";
 
 // converting the Options class to the stateless function component
 
-const Options = (props) => {
-  return (
-    <div>
-      <button onClick={props.handleDeleteOptions}>Remove all</button>
-      {props.options.length === 0 && <p>Please add an option to get started!</p>}
-      {
-        // key is a special reserved name, it won't be available in Option component
-        props.options.map((option) => (
-          < Option 
-            key={option} 
-            optionText={option} 
-            handleDeleteOption={props.handleDeleteOption}
-          />
-        ))
-      }
-    </div>
-  );
-};
-
-
+const Options = (props) => (
+  <div>
+    <button onClick={props.handleDeleteOptions}>Remove all</button>
+    {props.options.length === 0 && <p>Please add an option to get started!</p>}
+    {
+      // key is a special reserved name, it won't be available in Option component
+      props.options.map((option) => (
+        < Option 
+          key={option} 
+          optionText={option} 
+          handleDeleteOption={props.handleDeleteOption}
+        />
+      ))
+    }
+  </div>
+);
 
 export default Options;
