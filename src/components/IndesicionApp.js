@@ -36,7 +36,7 @@ export default class IndecisionApp extends React.Component {
     // options : []
     // to
     options: []
-  }
+  };
 
   handleDeleteOptions = () => {
     // this.setState(() => {
@@ -51,19 +51,19 @@ export default class IndecisionApp extends React.Component {
     // like this:  () => ({ return value here })  
 
     this.setState(() => ({ options: [] }));
-  }
+  };
 
   handleDeleteOption = (optionToRemove) => {
     this.setState((prevState) => ({
       options: prevState.options.filter((option) => optionToRemove !== option)
     }));
-  }
+  };
 
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
     alert(option);
-  }
+  };
 
   handleAddOption = (option) => {
     if (!option) {
@@ -84,7 +84,7 @@ export default class IndecisionApp extends React.Component {
     // because we are not doing something, we are just creating the object
 
     this.setState((prevState) => ({ options: prevState.options.concat(option)}));
-  }
+  };
 
   constructor(props) {
     super(props);

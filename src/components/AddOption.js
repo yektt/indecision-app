@@ -6,7 +6,7 @@ export default class AddOption extends React.Component {
   // you should add constructor method and bind the method again
   state = {
     error: undefined
-  }
+  };
 
   // class method
   // something that is contained inside of the class
@@ -33,7 +33,7 @@ export default class AddOption extends React.Component {
       e.target.elements.option.value = "";
     }
   };
-  
+
   render() {
     return (
       <div>
