@@ -1,8 +1,9 @@
-import React from "react";
-import AddOption from "./AddOption";
-import Options from "./Options";
-import Header from "./Header";
-import Action from "./Action";
+import React from 'react';
+import AddOption from './AddOption';
+import Action from './Action';
+import Header from './Header';
+import Options from './Options';
+import OptionModal from './OptionModal';
 
 // component state: manipulating the data and 
 // component is going to take care the rest itself
@@ -35,7 +36,8 @@ export default class IndecisionApp extends React.Component {
     // from
     // options : []
     // to
-    options: []
+    options: [],
+    selectedOption: undefined
   };
 
   handleDeleteOptions = () => {
@@ -59,10 +61,16 @@ export default class IndecisionApp extends React.Component {
     }));
   };
 
+  handleClearSelectedOption = () => {
+    this.setState(() => ({ selectedOption: undefined }));
+  };
+
   handlePick = () => {
     const randomNum = Math.floor(Math.random() * this.state.options.length);
     const option = this.state.options[randomNum];
-    alert(option);
+    this.setState(() => ({
+      selectedOption: option
+    }));
   };
 
   handleAddOption = (option) => {
@@ -92,8 +100,6 @@ export default class IndecisionApp extends React.Component {
     this.handlePick = this.handlePick.bind(this);
     this.handleAddOption = this.handleAddOption.bind(this);
     this.handleDeleteOption = this.handleDeleteOption.bind(this);
-
-    
   }
 
   componentDidMount() {
@@ -143,6 +149,10 @@ export default class IndecisionApp extends React.Component {
         />
         <AddOption 
           handleAddOption = {this.handleAddOption}
+        />
+        <OptionModal 
+          selectedOption = {this.state.selectedOption}
+          handleClearSelectedOption = {this.handleClearSelectedOption}
         />
       </div>
     );
