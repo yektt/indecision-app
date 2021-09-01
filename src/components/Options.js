@@ -21,7 +21,12 @@ import Option from "./Option";
 
 const Options = (props) => (
   <div>
-    <button onClick={props.handleDeleteOptions}>Remove all</button>
+    <button 
+      className="button button--link"
+      onClick={props.handleDeleteOptions}>
+        Remove all
+    </button>
+    
     {props.options.length === 0 && <p>Please add an option to get started!</p>}
     {
       // key is a special reserved name, it won't be available in Option component
