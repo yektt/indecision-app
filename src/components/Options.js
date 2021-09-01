@@ -30,7 +30,7 @@ const Options = (props) => (
       </button>
     </div>
     
-    {props.options.length === 0 && <p>Please add an option to get started!</p>}
+    {props.options.length === 0 && <p className="widget__message">Please add an option to get started!</p>}
     {
       // key is a special reserved name, it won't be available in Option component
       props.options.map((option) => (
